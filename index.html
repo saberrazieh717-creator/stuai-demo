@@ -86,6 +86,12 @@
 function showPage(pageId){
   document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
   document.getElementById(pageId).style.display = 'block';
+
+  // If user clicked on "resources", make sure content is loaded (only once)
+  if (pageId === 'resources' && !window.resourcesLoaded) {
+    loadResources();
+    window.resourcesLoaded = true; // only load once
+  }
 }
 
 // 10 Persian educational resources
@@ -102,14 +108,19 @@ const resources = [
   { title: "آلاء – آموزش رایگان کنکور", link: "https://alaatv.com/" }
 ];
 
-// Render Persian resources
-const container = document.getElementById('resources-list');
-resources.forEach(r => {
-  const card = document.createElement('div');
-  card.className = 'card';
-  card.innerHTML = `<h3><a href="${r.link}" target="_blank">${r.title}</a></h3>`;
-  container.appendChild(card);
-});
+// Render resources into cards
+function loadResources() {
+  const container = document.getElementById('resources-list');
+  resources.forEach(r => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `<h3><a href="${r.link}" target="_blank">${r.title}</a></h3>`;
+    container.appendChild(card);
+  });
+}
+
+// Optional: show home on page load
+showPage('home');
 </script>
 </body>
 </html>
