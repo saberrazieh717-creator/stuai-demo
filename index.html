@@ -82,45 +82,45 @@
     </main>
   </div>
 
-<script>
-function showPage(pageId){
-  document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-  document.getElementById(pageId).style.display = 'block';
+  <!-- 💡 Place script at the end of body so it runs after DOM is ready -->
+  <script>
+    function showPage(pageId){
+      document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+      document.getElementById(pageId).style.display = 'block';
 
-  // If user clicked on "resources", make sure content is loaded (only once)
-  if (pageId === 'resources' && !window.resourcesLoaded) {
-    loadResources();
-    window.resourcesLoaded = true; // only load once
-  }
-}
+      // If user clicks resources, load them once
+      if (pageId === 'resources' && !window.resourcesLoaded) {
+        loadResources();
+        window.resourcesLoaded = true;
+      }
+    }
 
-// 10 Persian educational resources
-const resources = [
-  { title: "فرادرس", link: "https://faradars.org/" },
-  { title: "مکتب‌خونه", link: "https://maktabkhooneh.org/" },
-  { title: "کانون فرهنگی آموزش (قلم‌چی)", link: "https://kanoon.ir/" },
-  { title: "شبکه آموزش صدا و سیما", link: "https://amoozesh.tv5.ir/" },
-  { title: "استادبانک", link: "https://ostadbank.com/" },
-  { title: "سبزلرن – آموزش برنامه‌نویسی", link: "https://sabzlearn.ir/" },
-  { title: "درسمن – آموزش آنلاین", link: "https://darsman.com/" },
-  { title: "روان‌آموز – آموزش روانشناسی", link: "https://ravanamooz.ir/" },
-  { title: "وزارت آموزش و پرورش", link: "https://www.medu.ir/" },
-  { title: "آلاء – آموزش رایگان کنکور", link: "https://alaatv.com/" }
-];
+    // 10 Persian educational resources
+    const resources = [
+      { title: "فرادرس", link: "https://faradars.org/" },
+      { title: "مکتب‌خونه", link: "https://maktabkhooneh.org/" },
+      { title: "کانون فرهنگی آموزش (قلم‌چی)", link: "https://kanoon.ir/" },
+      { title: "شبکه آموزش صدا و سیما", link: "https://amoozesh.tv5.ir/" },
+      { title: "استادبانک", link: "https://ostadbank.com/" },
+      { title: "سبزلرن – آموزش برنامه‌نویسی", link: "https://sabzlearn.ir/" },
+      { title: "درسمن – آموزش آنلاین", link: "https://darsman.com/" },
+      { title: "روان‌آموز – آموزش روانشناسی", link: "https://ravanamooz.ir/" },
+      { title: "وزارت آموزش و پرورش", link: "https://www.medu.ir/" },
+      { title: "آلاء – آموزش رایگان کنکور", link: "https://alaatv.com/" }
+    ];
 
-// Render resources into cards
-function loadResources() {
-  const container = document.getElementById('resources-list');
-  resources.forEach(r => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `<h3><a href="${r.link}" target="_blank">${r.title}</a></h3>`;
-    container.appendChild(card);
-  });
-}
+    function loadResources() {
+      const container = document.getElementById('resources-list');
+      resources.forEach(r => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `<h3><a href="${r.link}" target="_blank">${r.title}</a></h3>`;
+        container.appendChild(card);
+      });
+    }
 
-// Optional: show home on page load
-showPage('home');
-</script>
+    // Show home page on first load
+    showPage('home');
+  </script>
 </body>
 </html>
